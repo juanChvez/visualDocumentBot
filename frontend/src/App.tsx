@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { VITE_API_BASE } from '@src/config/env';
 
 function App() {
   const [message, setMessage] = useState('Cargando...');
 
   useEffect(() => {
-    fetch('http://localhost:5000/ping')
+    fetch(`${VITE_API_BASE}/ping`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message))
       .catch((err) => setMessage('Error al conectar con backend' + JSON.stringify(err)));
