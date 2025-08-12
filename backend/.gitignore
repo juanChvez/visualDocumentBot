@@ -1,0 +1,29 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos temporales de ejecución
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Variables de entorno
+*.env
+.env.*
+!example.env
+
+# ---- Flask ----
+instance/
+*.db
+*.sqlite3
+
+# Images test
+/imagesTest/
