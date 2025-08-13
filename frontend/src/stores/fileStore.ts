@@ -8,6 +8,7 @@ export interface FileItem {
   type: string;
   uploadProgress?: number;
   status: 'pending' | 'uploading' | 'completed' | 'error';
+  context: string;
   error?: string;
 }
 
@@ -23,12 +24,14 @@ interface FileStore {
   updateFileStatus: (id: string, status: FileItem['status'], error?: string) => void;
   updateUploadProgress: (id: string, progress: number) => void;
   setUploading: (isUploading: boolean) => void;
+  setContext: (id: string, contextText: string) => void;
   
   // Computed
   getFileById: (id: string) => FileItem | undefined;
   getFilesByStatus: (status: FileItem['status']) => FileItem[];
   getTotalSize: () => number;
   getFileCount: () => number;
+  reset: () => void
 }
 
 export const useFileStore = create<FileStore>((set, get) => ({
@@ -43,6 +46,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
       size: file.size,
       type: file.type,
       status: 'pending',
+      context: '',
     };
 
     set((state) => ({
@@ -58,6 +62,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
       size: file.size,
       type: file.type,
       status: 'pending',
+      context: '',
     }));
 
     set((state) => ({
@@ -95,6 +100,14 @@ export const useFileStore = create<FileStore>((set, get) => ({
     set({ isUploading });
   },
 
+  setContext: (id: string, contextText: string) => {
+    set((state) => ({
+      files: state.files.map((file) =>
+        file.id === id ? { ...file, context: contextText } : file
+      ),
+    }));
+  },
+
   // Computed getters
   getFileById: (id: string) => {
     return get().files.find((file) => file.id === id);
@@ -110,5 +123,12 @@ export const useFileStore = create<FileStore>((set, get) => ({
 
   getFileCount: () => {
     return get().files.length;
+  },
+
+  reset: () => {
+    set({
+      files: [],
+      isUploading: false,
+    });
   },
 })); 

@@ -25,5 +25,5 @@ instance/
 *.db
 *.sqlite3
 
-# Images test
-/imagesTest/
+# Images
+/uploads/

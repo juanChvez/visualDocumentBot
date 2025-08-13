@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { ImageUp } from "lucide-react";
+import { Upload } from "lucide-react";
 import { useFileUpload } from "@src/hooks/useFileUpload";
 
 interface UploadFileProps {
@@ -16,7 +16,7 @@ export const UploadFile: React.FC<UploadFileProps> = ({
   const [isDragOver, setIsDragOver] = useState(false);
   const [error, setError] = useState<string>();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { handleFilesUpload } = useFileUpload();
+  const { handleFilesUpload, getUploadingFiles } = useFileUpload();
 
   const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();
@@ -103,6 +103,7 @@ export const UploadFile: React.FC<UploadFileProps> = ({
   return (
     <div className="w-full">
       <input
+        disabled={getUploadingFiles().length > 0}
         ref={fileInputRef}
         type="file"
         accept={accept}
@@ -114,7 +115,7 @@ export const UploadFile: React.FC<UploadFileProps> = ({
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
           isDragOver
             ? "border-blue-500 bg-blue-50"
-            : "border-gray-300 hover:border-gray-400"
+            : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -122,7 +123,9 @@ export const UploadFile: React.FC<UploadFileProps> = ({
         onClick={handleClick}
       >
         <div className="text-gray-600">
-          <ImageUp size="64" className="m-auto" />
+          <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center m-auto mb-6">
+            <Upload size={40} className="text-blue-600" />
+          </div>
           <p className="text-lg font-medium">
             {multiple
               ? "Drop files here or click to browse"
