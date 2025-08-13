@@ -10,14 +10,14 @@ services:
       - ./backend/uploads:/app/uploads
     environment:
       - FLASK_APP=app.py
-      - FLASK_ENV=development  # Esto activa modo debug y recarga automática
+      - FLASK_ENV=development
   frontend:
     build: ./frontend
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-      - /app/node_modules  # Evita conflictos entre host y contenedor
+      - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
