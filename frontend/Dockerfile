@@ -1,4 +1,4 @@
-# Build stage
+# Build Stage
 FROM node:20.19.0 AS build
 WORKDIR /app
 
@@ -8,6 +8,10 @@ RUN npm install
 
 # Copy the rest of the source code
 COPY . .
+
+# Set the environment variable for Vite (ARG is passed during build)
+ARG VITE_API_BASE
+ENV VITE_API_BASE=$VITE_API_BASE
 
 # Build the optimized production version
 RUN npm run build
