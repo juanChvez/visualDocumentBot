@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { LoaderCircle, MessageCircle, Send } from "lucide-react";
 import { useChat } from "@src/hooks/useChat";
 import { useChatStore } from "@src/stores/chatStore";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const ChatPage: React.FC = () => {
   const { sendMessage, loadingResponse } = useChat();
@@ -103,15 +105,16 @@ export const ChatPage: React.FC = () => {
                   }`}
                 >
                   <div
-                    className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
+                    className={`max-w-xs lg:max-w-lg px-4 py-3 rounded-lg ${
                       message.role == "user"
                         ? "bg-blue-600 text-white"
                         : "bg-gray-100 text-gray-900"
                     }`}
                   >
                     <p className="text-sm">
-                      {message.text}
-                      <br />
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {message.text}
+                      </ReactMarkdown>
                       <span
                         className={`block mt-2 text-[8px] ${
                           message.role == "user" ? "text-right" : "text-left"
