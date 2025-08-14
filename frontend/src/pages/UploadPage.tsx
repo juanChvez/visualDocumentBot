@@ -34,7 +34,7 @@ export const UploadPage: React.FC = () => {
         <div className="grid mb-8">
           {/* Upload Section */}
           <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
-            <UploadFile accept="image/*" multiple={true} />
+            <UploadFile accept="image/*,application/pdf" multiple={true} />
 
             <div className="mt-6">
               <FileList />
