@@ -10,3 +10,6 @@ requests
 # -- OCR
 torch
 easyocr
+
+# -- deployment
+gunicorn
