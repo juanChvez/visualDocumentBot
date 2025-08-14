@@ -4,9 +4,6 @@ WORKDIR /app
 
 # Install system dependencies necessary for vision and PyTorch (without tesseract)
 RUN apt-get update && apt-get install -y \
-    #OCR
-    libsm6 \
-    libxext6 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies (includes easyocr and torch in requirements.txt)

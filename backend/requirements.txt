@@ -6,10 +6,5 @@ flask==2.3.3
 flask-cors
 requests
 
-
-# -- OCR
-torch
-easyocr
-
 # -- deployment
 gunicorn

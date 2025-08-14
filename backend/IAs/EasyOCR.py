@@ -1,3 +1,4 @@
+# DEPRECATED: now use OCR.SPACE
 import easyocr
 from PIL import Image
 import numpy as np

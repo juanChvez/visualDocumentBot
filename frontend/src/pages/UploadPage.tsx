@@ -13,8 +13,10 @@ export const UploadPage: React.FC = () => {
 
   const handleProcess = async () => {
     await uploadAllFiles('/detect-text');
-    const uuid = await createChatWithFiles('/create-chat');
-    navigate(`/chat/${uuid}`);
+    if (getErrorFiles().length === 0) {
+      const uuid = await createChatWithFiles('/create-chat');
+      navigate(`/chat/${uuid}`);
+    }
   };
 
   return (

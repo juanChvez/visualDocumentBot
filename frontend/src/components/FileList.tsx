@@ -144,7 +144,7 @@ export const FileList: React.FC = () => {
                 </div>
               </div>
 
-              {fileItem.status === "pending" || fileItem.status === "error" && (
+              {(fileItem.status === "pending" || fileItem.status === "error") && (
                 <button
                   onClick={() => removeFile(fileItem.id)}
                   className="flex-shrink-0 ml-2 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"

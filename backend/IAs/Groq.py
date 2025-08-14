@@ -20,7 +20,7 @@ def ask(prompt):
         ]
     }
 
-    response = requests.post("https://api.groq.com/openai/v1/chat/completions",
+    response = requests.post(app.config['GROQ_API_URL'],
                              headers=headers, json=payload)
 
     if response.status_code != 200:
@@ -54,7 +54,7 @@ def ask_chat(messages):
     }
 
     response = requests.post(
-        "https://api.groq.com/openai/v1/chat/completions",
+        app.config['GROQ_API_URL'],
         headers=headers,
         json=payload
     )

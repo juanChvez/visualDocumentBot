@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app as app
-from IAs import Groq, EasyOCR
+from IAs import Groq, OCRspace
 from utils.file_ops import save_uploaded_file, delete_uploaded_file
 
 files_bp = Blueprint('files', __name__)
@@ -37,7 +37,7 @@ def detect_text():
         path_temp = app.config['UPLOAD_FOLDER'] + '/temp'
         temp_file_path = save_uploaded_file(file, path_temp, new_filename)
 
-        text = EasyOCR.ocr_text(temp_file_path)
+        text = OCRspace.ocr_text(temp_file_path)
         result = Groq.ask(f"""Reconstruct and clean the following text, correcting OCR errors,
         and return only a JSON in this format:
 

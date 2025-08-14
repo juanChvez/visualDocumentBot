@@ -65,7 +65,7 @@ export const useFileUpload = () => {
           } else {
             updateFileStatus(fileId, 'error', `Upload failed: ${response.error}`);
           }
-          resolve(response.response.content);
+          resolve(response.response.content || "");
         });
 
         xhr.addEventListener('error', () => {
