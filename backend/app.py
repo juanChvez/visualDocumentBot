@@ -13,4 +13,4 @@ app.register_blueprint(chat_routes.chat_bp)
 app.register_blueprint(file_routes.files_bp)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=app.config['PORT'], debug=app.config['DEBUG'])
