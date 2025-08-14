@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useChatStore, Message } from "@src/stores/chatStore";
+import { useChatStore } from "@src/stores/chatStore";
+import type { Message } from "@src/stores/chatStore";
 import { VITE_API_BASE } from "@src/config/env";
 
 export function useChat() {
