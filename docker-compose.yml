@@ -2,7 +2,9 @@ version: '3.9'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
     ports:
       - "5000:5000"
     volumes:
@@ -12,7 +14,9 @@ services:
       - FLASK_APP=app.py
       - FLASK_ENV=development  # Esto activa modo debug y recarga automática
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
